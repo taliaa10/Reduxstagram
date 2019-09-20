@@ -14,6 +14,10 @@ const defaultState = {
   comments
 };
 
-export const store = createStore(rootReducer, defaultState);
+export const store = createStore(
+  rootReducer,
+  defaultState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export const history = syncHistoryWithStore(browserHistory, store);
