@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
+import Photo from './Photo';
+import Comments from './Comments';
 
 class Single extends Component {
   render() {
-    return <div className="single-photo">I'm the single</div>;
+    // index of post
+    const { postId } = this.props.params;
+    const i = this.props.posts.findIndex(
+      post => post.code === this.props.params.postId
+    );
+    const post = this.props.posts[i];
+    const postComments = this.props.comments[postId] || [];
+
+    // get us the post
+    return (
+      <div className="single-photo">
+        <Photo i={i} post={post} {...this.props} />;
+        <Comments postComments={postComments} {...this.props} />
+      </div>
+    );
   }
 }
 
